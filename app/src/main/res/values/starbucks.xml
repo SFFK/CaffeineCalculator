@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="coffee">
+        <item>커피명</item>
+        <item>망고 용과 레모네이드 스타벅스 리프레셔</item>
+        <item>퍼플 드링크 위드 망고 용과 스타벅스 리프레셔</item>
+        <item>딸기 아사이 레모네이드 스타벅스 리프레셔</item>
+        <item>핑크 드링크 위드 딸기 아사이 스타벅스 리프레셔</item>
+        <item>오트 콜드 브루</item>
+        <item>돌체 콜드 브루</item>
+        <item>바닐라 크림 콜드 브루</item>
+        <item>콜드 브루</item>
+        <item>나이트로 바닐라 크림</item>
+        <item>나이트로 콜드 브루</item>
+        <item>제주 비자림 콜드 브루</item>
+        <item>제주 시트러스 허니 콜드 브루</item>
+        <item>여수 윤슬 헤이즐넛 콜드 브루</item>
+        <item>브라운 슈가 오트 쉐이큰 에스프레소</item>
+        <item>블론드 바닐라 더블 샷 마키아또</item>
+        <item>블론드 스타벅스 돌체 라떼</item>
+        <item>블론드 카페 라떼</item>
+        <item>블론드 카페 아메리카노</item>
+        <item>더 그린 쑥 크림 라떼</item>
+        <item>블랙 글레이즈드 라떼</item>
+        <item>바닐라 플랫 화이트</item>
+        <item>스타벅스 돌체 라떼</item>
+        <item>카페 모카</item>
+        <item>카페 아메리카노</item>
+        <item>카페 라떼</item>
+        <item>카푸치노</item>
+        <item>카라멜 마키아또</item>
+        <item>화이트 초콜릿 모카</item>
+        <item>커피 스타벅스 더블 샷</item>
+        <item>헤이즐넛 스타벅스 더블 샷</item>
+        <item>에스프레소</item>
+        <item>에스프레소 마키아또</item>
+        <item>에스프레소 콘 파나</item>
+        <item></item>
+    </string-array>
+</resources>

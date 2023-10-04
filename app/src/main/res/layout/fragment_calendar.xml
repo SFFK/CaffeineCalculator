@@ -25,18 +25,20 @@
         <TextView
             android:id="@+id/today"
             android:text="2023년 9월 1일 섭취한 카페인 총 함량"
+            android:textSize="20sp"
+            android:textStyle="italic"
             android:textColor="@color/black"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/today_drink"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:text="0"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:listitem="@layout/coffee_view"/>
 
     </LinearLayout>
 

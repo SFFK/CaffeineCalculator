@@ -4,17 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingVertical="20dp"
+    android:layout_height="wrap_content"
+    android:paddingVertical="15dp"
     android:paddingHorizontal="20dp">
 
     <TextView
         android:id="@+id/item_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="내용"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textColor="#2F4F4F"
+        android:text=""
+        android:textSize="15sp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

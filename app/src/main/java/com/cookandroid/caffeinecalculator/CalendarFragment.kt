@@ -2,18 +2,20 @@ package com.cookandroid.caffeinecalculator
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.cookandroid.caffeinecalculator.databinding.FragmentCalendarBinding
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.io.FileInputStream
-
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+
 
 class CalendarFragment : Fragment() {
     private var mBinding : FragmentCalendarBinding? = null
@@ -44,14 +46,19 @@ class CalendarFragment : Fragment() {
         calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val selectedDay = year.toString() + "년 " + (month + 1).toString() + "월 " + dayOfMonth.toString() + "일"
             title.text = "$selectedDay 섭취한 카페인 목록"
+            itemList.clear()
             showText(selectedDay)
             coffeeAdapter.notifyDataSetChanged()
         }
 
+        // 리사이클뷰 어댑터
         coffeeAdapter = CoffeeAdapter(itemList)
-
         re_view.adapter = coffeeAdapter
         re_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        // 구분선
+        val decoration = DividerItemDecoration(context, VERTICAL)
+        re_view.addItemDecoration(decoration)
 
         return mBinding?.root
     }
@@ -59,18 +66,18 @@ class CalendarFragment : Fragment() {
     // 데이터를 보여주는 함수
     fun showText(day : String) {
         val fileInputStream : FileInputStream
-        itemList.clear()
         try {
             fileInputStream = activity?.openFileInput("$day.txt")!!
             val fileData = ByteArray(fileInputStream.available())
             fileInputStream.read(fileData)
             fileInputStream.close()
-            val content = String(fileData).also {
+            val content = String(fileData)
+            // 한줄씩받아와서 itemList에 입력
+            content.lines().forEach {
                 itemList.add(it)
             }
-
-
-
+            // 마지막 줄바꿈으로 인한 빈공란 제거
+            itemList.removeLast()
         } catch (e : java.lang.Exception) {
             e.printStackTrace()
         }

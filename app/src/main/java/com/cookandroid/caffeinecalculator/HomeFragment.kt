@@ -1,9 +1,8 @@
 package com.cookandroid.caffeinecalculator
 
-import android.R
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +17,6 @@ import org.apache.poi.hssf.usermodel.HSSFCell
 import org.apache.poi.hssf.usermodel.HSSFRow
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
-import org.apache.poi.ss.formula.functions.Today
 import java.io.FileOutputStream
 import java.text.DecimalFormat
 import java.time.LocalDateTime
@@ -30,16 +28,22 @@ class HomeFragment : Fragment() {
     // items MutableList 객체 생성
     private var items: MutableList<CoffeeData> = mutableListOf()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         mBinding = binding
 
         // 오늘 날짜 받아오기
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일")
-        val formatted = current.format(formatter)
+        fun getDate(): String {
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일")
 
-        // 첫번째 시트 엑셀 불러오기
+            return current.format(formatter)
+        }
+
+        val nowDay = getDate()
+
+        // 엑셀 불러오기
         readExcelFileFromAssets()
 
         // mutableList 객체 생성, String 객체 생성
@@ -52,17 +56,19 @@ class HomeFragment : Fragment() {
         val sharedPreferences = context?.getSharedPreferences("preferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
 
-        // 초기화 함수들
+        // 브랜드 초기화
         fun clearBrand() {
             brand.clear()
             brand.add(0,"브랜드명을 선택하세요.")
         }
 
+        // 커피 초기화
         fun clearCoffee() {
             coffee.clear()
             coffee.add(0,"커피를 선택하세요.")
         }
 
+        // 사이즈 초기화
         fun clearSize() {
             size.clear()
             size.add(0,"사이즈를 선택하세요.")
@@ -92,11 +98,6 @@ class HomeFragment : Fragment() {
             activity?.let { ArrayAdapter<String>(it, android.R.layout.simple_list_item_1, size) }
         var spinner3 = binding.size
         spinner3.adapter = adapter3
-
-        // 스피너 시작위치 지정
-        spinner.setSelection(0)
-        spinner2.setSelection(0)
-        spinner3.setSelection(0)
 
         // 스피너 이벤트
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -153,10 +154,32 @@ class HomeFragment : Fragment() {
         var sc = binding.showCaffeine
         var sp = binding.showPercent
 
-        // 실행시 보여지는 카페인 퍼센트와 총 함량
-        caffeine = sharedPreferences?.getString("caffeine", "0")!!
-        sc.text = caffeine
-        sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
+        // 앱 구동시 초기에 보이는 화면
+        fun start() {
+            // 스피너 시작위치 지정
+            spinner.setSelection(0)
+            spinner2.setSelection(0)
+            spinner3.setSelection(0)
+
+            // 카페인 퍼센트와 총 함량
+            caffeine = sharedPreferences?.getString("caffeine", "0")!!
+            sc.text = caffeine
+            sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
+        }
+
+        // 초기화 함수
+        fun reset() {
+            // 스피너 시작위치 지정
+            spinner.setSelection(0)
+            spinner2.setSelection(0)
+            spinner3.setSelection(0)
+
+            // sharedPreferences 초기화
+            editor?.clear()?.apply()
+            caffeine = sharedPreferences?.getString("caffeine", "0")!!
+            sc.text = "0"
+            sp.text = "0"
+        }
 
         // 버튼 이벤트
         addbtn.setOnClickListener {
@@ -170,7 +193,7 @@ class HomeFragment : Fragment() {
                     // sharedPreferences 카페인양 입력 후 다시 값 불러오기
                     editor?.putString("caffeine", Dtotal)?.apply()
                     caffeine = sharedPreferences?.getString("caffeine", "0")!!
-                    addText("$formatted.txt", items[i].brand, items[i].coffee, items[i].size, items[i].caffeine)
+                    addText("$nowDay.txt", items[i].brand, items[i].coffee, items[i].size, items[i].caffeine)
 
                 }
             }
@@ -190,13 +213,11 @@ class HomeFragment : Fragment() {
 
         // 초기화 버튼
         resetbtn.setOnClickListener {
-            editor?.clear()?.apply()
-            caffeine = sharedPreferences?.getString("caffeine", "0")!!
-            sc.text = "0"
-            sp.text = "0"
-            removeText("$formatted.txt")
+            reset()
+            removeText("$nowDay.txt")
         }
 
+        start()
 
         return mBinding?.root
     }

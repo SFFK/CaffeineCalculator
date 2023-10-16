@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
             return current.format(formatter)
         }
 
-        val nowDay = getDate()
+        var nowDay = getDate()
 
         // 엑셀 불러오기
         readExcelFileFromAssets()
@@ -161,8 +161,19 @@ class HomeFragment : Fragment() {
             spinner2.setSelection(0)
             spinner3.setSelection(0)
 
+            // 구동 중 자정이 넘어갈 경우
+            if(nowDay != getDate()) {
+                nowDay = getDate()
+
+                editor?.clear()?.apply()
+                caffeine = sharedPreferences?.getString("caffeine", "0")!!
+            }
+
+            else {
+                caffeine = sharedPreferences?.getString("caffeine", "0")!!
+            }
+
             // 카페인 퍼센트와 총 함량
-            caffeine = sharedPreferences?.getString("caffeine", "0")!!
             sc.text = caffeine
             sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
         }

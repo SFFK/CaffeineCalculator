@@ -150,9 +150,22 @@ class HomeFragment : Fragment() {
         }
 
         var addbtn = binding.addBtn
+        var custombtn = binding.customBtn
         var resetbtn = binding.resetBtn
         var sc = binding.showCaffeine
         var sp = binding.showPercent
+
+        // 퍼센트별로 텍스트 색상 구현
+        fun textColor() {
+            // 카페인량이 90 미만일 경우
+            if(sp.text.toString().toInt() < 90) {
+                sp.setTextColor(Color.parseColor("#a52a2a"))
+            }
+            // 아닐 경우
+            else {
+                sp.setTextColor(Color.RED)
+            }
+        }
 
         // 앱 구동시 초기에 보이는 화면
         fun start() {
@@ -161,21 +174,13 @@ class HomeFragment : Fragment() {
             spinner2.setSelection(0)
             spinner3.setSelection(0)
 
-            // 구동 중 자정이 넘어갈 경우
-            if(nowDay != getDate()) {
-                nowDay = getDate()
-
-                editor?.clear()?.apply()
-                caffeine = sharedPreferences?.getString("caffeine", "0")!!
-            }
-
-            else {
-                caffeine = sharedPreferences?.getString("caffeine", "0")!!
-            }
-
             // 카페인 퍼센트와 총 함량
+            caffeine = sharedPreferences?.getString("caffeine $nowDay", "0")!!
             sc.text = caffeine
             sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
+
+            // 텍스트 색상
+            textColor()
         }
 
         // 초기화 함수
@@ -187,12 +192,12 @@ class HomeFragment : Fragment() {
 
             // sharedPreferences 초기화
             editor?.clear()?.apply()
-            caffeine = sharedPreferences?.getString("caffeine", "0")!!
+            caffeine = sharedPreferences?.getString("caffeine $nowDay", "0")!!
             sc.text = "0"
             sp.text = "0"
         }
 
-        // 버튼 이벤트
+        // 추가 버튼
         addbtn.setOnClickListener {
             for(i in 0 until items.size) {
                 if(spinner.selectedItem == items[i].brand && spinner2.selectedItem == items[i].coffee && spinner3.selectedItem == items[i].size) {
@@ -202,8 +207,8 @@ class HomeFragment : Fragment() {
                     val Dtotal = DecimalFormat("#.#").format(total)
 
                     // sharedPreferences 카페인양 입력 후 다시 값 불러오기
-                    editor?.putString("caffeine", Dtotal)?.apply()
-                    caffeine = sharedPreferences?.getString("caffeine", "0")!!
+                    editor?.putString("caffeine $nowDay", Dtotal)?.apply()
+                    caffeine = sharedPreferences?.getString("caffeine $nowDay", "0")!!
                     addText("$nowDay.txt", items[i].brand, items[i].coffee, items[i].size, items[i].caffeine)
 
                 }
@@ -212,14 +217,12 @@ class HomeFragment : Fragment() {
             sc.text = caffeine
             sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
 
-            // 카페인량이 50 미만일 경우
-            if(sp.text.toString().toInt() < 50) {
-                sp.setTextColor(Color.BLUE)
-            }
-            // 아닐 경우
-            else {
-                sp.setTextColor(Color.RED)
-            }
+            textColor()
+        }
+
+        // 직접추가 버튼
+        custombtn.setOnClickListener {
+
         }
 
         // 초기화 버튼

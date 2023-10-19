@@ -222,7 +222,8 @@ class HomeFragment : Fragment() {
 
         // 직접추가 버튼
         custombtn.setOnClickListener {
-
+            val dlg = activity?.let { AddDialog(it) }
+            dlg!!.show()
         }
 
         // 초기화 버튼

@@ -33,14 +33,6 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         mBinding = binding
 
-        // 오늘 날짜 받아오기
-        fun getDate(): String {
-            val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일")
-
-            return current.format(formatter)
-        }
-
         var nowDay = getDate()
 
         // 엑셀 불러오기
@@ -224,7 +216,28 @@ class HomeFragment : Fragment() {
         custombtn.setOnClickListener {
             val dlg = activity?.let { AddDialog(it) }
             dlg!!.show()
+            // 커스텀다이얼로그 값 가져오기 interface 이용
+            dlg.setOnClickedListener(object : AddDialog.addClickListener {
+                override fun onClicked(item: CoffeeData) {
+                    // 카페인양 누적
+                    val total = caffeine.toDouble() + item.caffeine
+                    // total 소수 첫번째 자리까지 출력
+                    val Dtotal = DecimalFormat("#.#").format(total)
+
+                    // sharedPreferences 카페인양 입력 후 다시 값 불러오기
+                    editor?.putString("caffeine $nowDay", Dtotal)?.apply()
+                    caffeine = sharedPreferences?.getString("caffeine $nowDay", "0")!!
+                    addText("$nowDay.txt", item.brand, item.coffee, item.size, item.caffeine)
+
+                    sc.text = caffeine
+                    sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
+
+                    textColor()
+                }
+            })
         }
+
+
 
         // 초기화 버튼
         resetbtn.setOnClickListener {
@@ -235,6 +248,14 @@ class HomeFragment : Fragment() {
         start()
 
         return mBinding?.root
+    }
+
+    // 오늘 날짜 받아오기
+    fun getDate(): String {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일")
+
+        return current.format(formatter)
     }
 
     // 캘린더에 마신 음료와 카페인 추가 하는 함수

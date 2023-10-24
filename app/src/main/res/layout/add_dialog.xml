@@ -9,66 +9,68 @@
 
     <EditText
         android:id="@+id/add_brand"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="브랜드를 입력해주세요."
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="브랜드를 입력해주세요."
+        android:textSize="20sp"
+        android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/add_coffee"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="커피명을 입력해주세요."
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="커피명을 입력해주세요."
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/add_size"
         app:layout_constraintEnd_toEndOf="@+id/add_brand"
         app:layout_constraintStart_toStartOf="@+id/add_brand"
         app:layout_constraintTop_toTopOf="@id/add_brand" />
 
     <EditText
         android:id="@+id/add_size"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="사이즈를 입력해주세요."
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="사이즈를 입력해주세요."
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/add_caffeine"
         app:layout_constraintEnd_toEndOf="@+id/add_brand"
-        app:layout_constraintStart_toStartOf="@+id/add_brand"
+        app:layout_constraintStart_toStartOf="@+id/add_coffee"
         app:layout_constraintTop_toTopOf="@id/add_coffee" />
 
     <EditText
         android:id="@+id/add_caffeine"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="카페인함유량을 입력해주세요."
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="카페인을 입력해주세요."
+        android:textSize="20sp"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/add_addBtn"
         app:layout_constraintEnd_toEndOf="@id/add_brand"
-        app:layout_constraintStart_toStartOf="@id/add_brand"
+        app:layout_constraintStart_toStartOf="@id/add_size"
         app:layout_constraintTop_toTopOf="@id/add_size" />
 
     <Button
+        android:id="@+id/add_addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_addBtn"
         android:text="추가"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/add_brand"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_closeBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_caffeine"
         app:layout_constraintTop_toTopOf="@id/add_caffeine" />
 
     <Button
+        android:id="@+id/add_closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_closeBtn"
         android:text="닫기"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/add_brand"
+        app:layout_constraintEnd_toEndOf="@+id/add_caffeine"
         app:layout_constraintTop_toTopOf="@id/add_caffeine" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

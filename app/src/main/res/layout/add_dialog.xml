@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:background="@drawable/round"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:paddingVertical="20dp">
 
     <EditText
@@ -13,10 +15,10 @@
         android:layout_height="wrap_content"
         android:hint="브랜드를 입력해주세요."
         android:textSize="20sp"
-        android:layout_marginTop="90dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/add_coffee"
@@ -24,9 +26,11 @@
         android:layout_height="wrap_content"
         android:hint="커피명을 입력해주세요."
         android:textSize="20sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="@id/add_size"
-        app:layout_constraintEnd_toEndOf="@+id/add_brand"
-        app:layout_constraintStart_toStartOf="@+id/add_brand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/add_brand" />
 
     <EditText
@@ -35,9 +39,11 @@
         android:layout_height="wrap_content"
         android:hint="사이즈를 입력해주세요."
         android:textSize="20sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="@id/add_caffeine"
-        app:layout_constraintEnd_toEndOf="@+id/add_brand"
-        app:layout_constraintStart_toStartOf="@+id/add_coffee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/add_coffee" />
 
     <EditText
@@ -46,10 +52,12 @@
         android:layout_height="wrap_content"
         android:hint="카페인을 입력해주세요."
         android:textSize="20sp"
-        android:inputType="number"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@id/add_addBtn"
-        app:layout_constraintEnd_toEndOf="@id/add_brand"
-        app:layout_constraintStart_toStartOf="@id/add_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/add_size" />
 
     <Button
@@ -57,10 +65,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="추가"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_closeBtn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/add_caffeine"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/add_caffeine" />
 
     <Button
@@ -68,8 +76,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="닫기"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_caffeine"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/add_caffeine" />
 
 

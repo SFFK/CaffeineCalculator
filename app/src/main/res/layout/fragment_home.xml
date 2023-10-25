@@ -108,13 +108,14 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="35dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <Spinner
                         android:id="@+id/brand"
+                        android:background="@drawable/brownline"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
@@ -122,12 +123,14 @@
 
                     <Spinner
                         android:id="@+id/coffee"
+                        android:background="@drawable/brownline"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"/>
 
                     <Spinner
                         android:id="@+id/size"
+                        android:background="@drawable/brownline"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"/>
@@ -141,23 +144,32 @@
 
                     <Button
                         android:id="@+id/addBtn"
+                        android:drawableLeft="@drawable/addxml"
+                        android:background="@drawable/buttonradius"
+                        android:text="추가"
+                        android:textColor="@color/black"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="추가"/>
-
-                    <Button
-                        android:id="@+id/customBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="직접추가"/>
+                        android:layout_height="wrap_content"/>
 
                     <Button
                         android:id="@+id/resetBtn"
+                        android:drawableLeft="@drawable/resetxml"
+                        android:background="@drawable/buttonradius"
+                        android:text="리셋"
+                        android:textColor="@color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="초기화"/>
+                        android:layout_marginTop="20dp" />
+
+                    <Button
+                        android:id="@+id/customBtn"
+                        android:drawableLeft="@drawable/addlistxml"
+                        android:background="@drawable/buttonradius"
+                        android:text="입력"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"/>
 
                 </LinearLayout>
 

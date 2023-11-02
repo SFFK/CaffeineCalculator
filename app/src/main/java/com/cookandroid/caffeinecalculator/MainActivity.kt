@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 // left
                 R.id.left -> {
-                    val leftFragment = LeftFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.mainFrameLayout, leftFragment).commit()
+                    val settingFragment = SettingFragment()
+                    supportFragmentManager.beginTransaction().replace(R.id.mainFrameLayout, settingFragment).commit()
                     true
                 }
                 // right

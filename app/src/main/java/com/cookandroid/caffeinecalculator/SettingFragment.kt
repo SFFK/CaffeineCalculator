@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.cookandroid.caffeinecalculator.databinding.FragmentLeftBinding
+import com.cookandroid.caffeinecalculator.databinding.FragmentSettingBinding
 
-class LeftFragment : Fragment() {
-    private var mBinding : FragmentLeftBinding? = null
+class SettingFragment : Fragment() {
+    private var mBinding : FragmentSettingBinding? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentLeftBinding.inflate(inflater, container, false)
+        val binding = FragmentSettingBinding.inflate(inflater, container, false)
         mBinding = binding
 
         return binding.root

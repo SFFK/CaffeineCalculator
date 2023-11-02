@@ -5,16 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="15dp"
-    android:paddingHorizontal="20dp">
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="5dp">
 
     <TextView
         android:id="@+id/item_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#2F4F4F"
-        android:text=""
+        android:textColor="@color/black"
+        android:text="dd"
+        android:gravity="center|start"
+        android:drawableLeft="@drawable/coffeecup3xml"
+        android:background="@drawable/itemround"
         android:textSize="15sp"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

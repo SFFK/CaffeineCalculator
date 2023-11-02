@@ -39,13 +39,13 @@ class CalendarFragment : Fragment() {
         val formatted = current.format(formatter)
 
         // 처음에 보여주는 화면
-        title.text = "$formatted 섭취한 카페인 목록"
+        title.text = " - $formatted 섭취한 카페인 목록"
         showText(formatted)
 
         // 캘린더 이벤트
         calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val selectedDay = year.toString() + "년 " + (month + 1).toString() + "월 " + dayOfMonth.toString() + "일"
-            title.text = "$selectedDay 섭취한 카페인 목록"
+            title.text = " - $selectedDay 섭취한 카페인 목록"
             itemList.clear()
             showText(selectedDay)
             coffeeAdapter.notifyDataSetChanged()
@@ -55,10 +55,6 @@ class CalendarFragment : Fragment() {
         coffeeAdapter = CoffeeAdapter(itemList)
         re_view.adapter = coffeeAdapter
         re_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        // 구분선
-        val decoration = DividerItemDecoration(context, VERTICAL)
-        re_view.addItemDecoration(decoration)
 
         return mBinding?.root
     }

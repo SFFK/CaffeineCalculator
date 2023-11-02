@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".CalendarFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="119dp"
+        android:layout_gravity="top"
+        android:src="@drawable/coffeebin1"
+        android:alpha="0.3"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/calendarView"
+            android:background="@drawable/buttonradius"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
@@ -24,12 +32,13 @@
 
         <TextView
             android:id="@+id/today"
-            android:text="2023년 9월 1일 섭취한 카페인 총 함량"
+            android:text=" - 2023년 9월 1일 섭취한 카페인 총 함량"
             android:textSize="20sp"
             android:textStyle="italic"
             android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_width="match_parent"
+            android:drawableLeft="@drawable/coffeecup2xml"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"/>
 

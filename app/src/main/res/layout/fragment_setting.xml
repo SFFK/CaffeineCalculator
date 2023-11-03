@@ -25,27 +25,50 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/notify"
         android:layout_width="171dp"
         android:layout_height="130dp"
         android:layout_marginTop="68dp"
         android:layout_marginStart="20dp"
-        android:text="버전 정보"
+        android:text="공지사항"
         android:textColor="@color/black"
-        android:background="@drawable/buttonradius"
+        android:background="@drawable/brownradius"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/version"
         android:layout_width="171dp"
         android:layout_height="130dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="20dp"
         android:text="버전 정보"
         android:textColor="@color/black"
-        android:background="@drawable/buttonradius"
+        android:background="@drawable/brownradius"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="171dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:text="팝업 알림"
+        android:textColor="@color/black"
+        android:background="@drawable/brownradius"
+        app:layout_constraintTop_toBottomOf="@+id/notify"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="171dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:text="이용 방법"
+        android:textColor="@color/black"
+        android:background="@drawable/brownradius"
+        app:layout_constraintTop_toBottomOf="@+id/version"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

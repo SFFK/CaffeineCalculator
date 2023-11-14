@@ -1,5 +1,6 @@
 package com.cookandroid.caffeinecalculator
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,12 @@ class SettingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentSettingBinding.inflate(inflater, container, false)
         mBinding = binding
+
+        binding.notify.setOnClickListener {
+            val intent = Intent(activity, NotifyActivity::class.java)
+            startActivity(intent)
+
+        }
 
         return binding.root
     }

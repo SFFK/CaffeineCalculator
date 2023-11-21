@@ -31,6 +31,12 @@
         <activity
             android:name=".NotifyActivity">
         </activity>
+
+
+        <activity
+            android:name=".VersionActivity">
+        </activity>
+
     </application>
 
 </manifest>

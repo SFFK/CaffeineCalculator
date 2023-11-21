@@ -17,7 +17,11 @@ class SettingFragment : Fragment() {
         binding.notify.setOnClickListener {
             val intent = Intent(activity, NotifyActivity::class.java)
             startActivity(intent)
+        }
 
+        binding.version.setOnClickListener {
+            val intent = Intent(activity, VersionActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

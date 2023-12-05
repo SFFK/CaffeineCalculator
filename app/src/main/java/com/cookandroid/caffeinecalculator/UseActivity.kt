@@ -34,7 +34,7 @@ class UseActivity : AppCompatActivity() {
 
     // 아이템리스트 가져오기
     private fun getItemList() : ArrayList<Int> {
-        return arrayListOf<Int>(R.drawable.usefirst , R.drawable.usesecond, R.drawable.usethird)
+        return arrayListOf<Int>(R.drawable.use1 , R.drawable.use2, R.drawable.use3)
     }
 
     // 이미지를 넘길때 애니메이션 효과

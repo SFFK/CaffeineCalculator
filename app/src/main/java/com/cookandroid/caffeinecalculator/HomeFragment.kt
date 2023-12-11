@@ -289,6 +289,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // 채널 생성
     private fun createNotificationChannel(channelId : String, channelName : String, channelDescription : String) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // NotificationManager 객체 생성
@@ -319,10 +320,14 @@ class HomeFragment : Fragment() {
     }
 
     // 푸시 알림 생성
-    private fun createNotification() {
+    private fun createNotification(channelId : String, content : String) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // API Level 26(O) 이상에서는 Builder 생성자에 NotificationChannel의 아이디값을 설정
-            val notificationCompatBuilder = context?.let { NotificationCompat.Builder(it, channelId) }
+            val notificationCompatBuilder = context?.let { NotificationCompat.Builder(it, channelId)
+                .setSmallIcon(R.drawable.coffeebins)
+                .setContentTitle("Caffeine Record")
+                .setContentText()
+            }
 
         } else {
             // 26버전 미만은 생성자에 context만 설정

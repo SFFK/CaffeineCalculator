@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         var bottom_btn = binding.navigationView
         // 네비게이션 버튼 이벤트
         bottom_btn.run { setOnItemSelectedListener {

@@ -44,12 +44,13 @@ android {
     }
 }
 
-
 dependencies {
     // ViewPager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
-    //circleindicator
+    // circleindicator
     implementation 'me.relex:circleindicator:2.1.6'
+
+    implementation "androidx.core:core:1.12.0"
 
     //엑셀파일 읽기 쓰기
     implementation 'org.apache.poi:poi:3.9'

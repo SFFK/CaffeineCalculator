@@ -22,7 +22,7 @@ class NotifyActivity : AppCompatActivity() {
         viewItem.add(NotifyItem("Beta Version 출시"))
         viewItem.add(NotifyItem("버그 수정"))
         viewItem.add(NotifyItem("UI 업데이트"))
-        viewItem.add(NotifyItem("팝업 알림 추가"))
+        viewItem.add(NotifyItem("푸시 알림 추가"))
         viewItem.add(NotifyItem("정식 버전 출시 1.0.0 Version"))
         viewItem.add(NotifyItem("버그 수정"))
 

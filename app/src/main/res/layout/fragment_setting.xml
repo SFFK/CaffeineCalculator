@@ -55,7 +55,7 @@
         android:layout_height="130dp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
-        android:text="팝업 알림"
+        android:text="푸시 알림"
         android:textColor="@color/black"
         android:background="@drawable/brownradius"
         app:layout_constraintTop_toBottomOf="@+id/notify"

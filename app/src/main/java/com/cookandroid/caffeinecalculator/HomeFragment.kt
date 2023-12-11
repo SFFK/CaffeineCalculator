@@ -1,5 +1,8 @@
 package com.cookandroid.caffeinecalculator
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
@@ -12,6 +15,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.cookandroid.caffeinecalculator.databinding.FragmentHomeBinding
 import org.apache.poi.hssf.usermodel.HSSFCell
 import org.apache.poi.hssf.usermodel.HSSFRow
@@ -28,7 +33,6 @@ class HomeFragment : Fragment() {
     // items MutableList 객체 생성
     private var items: MutableList<CoffeeData> = mutableListOf()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         mBinding = binding
@@ -251,6 +255,7 @@ class HomeFragment : Fragment() {
     }
 
     // 오늘 날짜 받아오기
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getDate(): String {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일")
@@ -281,6 +286,62 @@ class HomeFragment : Fragment() {
             fileOutputStream.close()
         } catch (e : java.lang.Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun createNotificationChannel(channelId : String, channelName : String, channelDescription : String) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // NotificationManager 객체 생성
+            val notificationManager =
+                context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            // Notification Channel 아이디, 이름, 설명, 중요도 설정
+            val channelId = channelId
+            val channelName = channelName
+            val channelDescription = channelDescription
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+
+            // NotificationChannel 객체 생성
+            val notificationChannel = NotificationChannel(channelId, channelName, importance)
+            // 설명 설정
+            notificationChannel.description = channelDescription
+
+            // 채널에 불빛 설정
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.RED
+            // 채널 진동 설정
+            notificationChannel.enableVibration(true)
+            notificationChannel.vibrationPattern = longArrayOf(100L, 200L, 300L)
+
+            // 시스템에 notificationChannel 등록
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+    }
+
+    // 푸시 알림 생성
+    private fun createNotification() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // API Level 26(O) 이상에서는 Builder 생성자에 NotificationChannel의 아이디값을 설정
+            val notificationCompatBuilder = context?.let { NotificationCompat.Builder(it, channelId) }
+
+        } else {
+            // 26버전 미만은 생성자에 context만 설정
+            val notificationCompatBuilder = context?.let { NotificationCompat.Builder(it) }
+        }
+
+        notificationCompatBuilder?.let { it ->
+            // 작은 아이콘 설정
+            it.setSmallIcon(R.drawable.coffeebins)
+            // 시간 설정
+            it.setWhen(System.currentTimeMillis())
+            // 알림 메시지 설정
+            it.setContentTitle("Content Title")
+            // 알림 내용 설정
+            it.setContentText("Content Message")
+            // 알림과 동시에 진동 설정(권한 필요(
+            it.setDefaults(Notification.DEFAULT_VIBRATE)
+            // 스와이프를 해도 삭제 안되게 설정
+            it.setOngoing(true)
         }
     }
 

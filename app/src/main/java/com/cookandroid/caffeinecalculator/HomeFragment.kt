@@ -214,6 +214,12 @@ class HomeFragment : Fragment() {
             sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
 
             textColor()
+
+            // 푸시 알람
+            val result = sharedPreferences?.getBoolean("result", true)
+            if(result!!) {
+                createNotificationChannel("first channel", "alert", "first channel", "오늘 마신 카페인 량 : $caffeine mg")
+            }
         }
 
         // 직접추가 버튼
@@ -237,6 +243,12 @@ class HomeFragment : Fragment() {
                     sp.text = (caffeine?.toDouble()!! / 400 * 100).toInt().toString()
 
                     textColor()
+
+                    // 푸시 알람
+                    val result = sharedPreferences?.getBoolean("result", true)
+                    if(result!!) {
+                        createNotificationChannel("first channel", "alert", "first channel", "오늘 마신 카페인 량 : $caffeine mg")
+                    }
                 }
             })
         }
@@ -289,9 +301,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // 채널 생성
-    private fun createNotificationChannel(channelId : String, channelName : String, channelDescription : String) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    // 채널 생성 및 푸시 알림
+    private fun createNotificationChannel(channelId : String, channelName : String, channelDescription : String, content : String) {
+        // 오레오 버전 이후에는 채널이 필요
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // 알림 빌더
+            val notificationCompatBuilder = context?.let {
+                NotificationCompat.Builder(it, channelId)
+                    .setSmallIcon(R.drawable.coffeebins)
+                    .setContentTitle("Caffeine Record")
+                    .setContentText(content)
+            }
+
             // NotificationManager 객체 생성
             val notificationManager =
                 context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -316,37 +337,7 @@ class HomeFragment : Fragment() {
 
             // 시스템에 notificationChannel 등록
             notificationManager.createNotificationChannel(notificationChannel)
-        }
-    }
-
-    // 푸시 알림 생성
-    private fun createNotification(channelId : String, content : String) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // API Level 26(O) 이상에서는 Builder 생성자에 NotificationChannel의 아이디값을 설정
-            val notificationCompatBuilder = context?.let { NotificationCompat.Builder(it, channelId)
-                .setSmallIcon(R.drawable.coffeebins)
-                .setContentTitle("Caffeine Record")
-                .setContentText()
-            }
-
-        } else {
-            // 26버전 미만은 생성자에 context만 설정
-            val notificationCompatBuilder = context?.let { NotificationCompat.Builder(it) }
-        }
-
-        notificationCompatBuilder?.let { it ->
-            // 작은 아이콘 설정
-            it.setSmallIcon(R.drawable.coffeebins)
-            // 시간 설정
-            it.setWhen(System.currentTimeMillis())
-            // 알림 메시지 설정
-            it.setContentTitle("Content Title")
-            // 알림 내용 설정
-            it.setContentText("Content Message")
-            // 알림과 동시에 진동 설정(권한 필요(
-            it.setDefaults(Notification.DEFAULT_VIBRATE)
-            // 스와이프를 해도 삭제 안되게 설정
-            it.setOngoing(true)
+            notificationManager.notify(1, notificationCompatBuilder?.build())
         }
     }
 

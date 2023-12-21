@@ -187,7 +187,7 @@ class HomeFragment : Fragment() {
             spinner3.setSelection(0)
 
             // sharedPreferences 초기화
-            editor?.clear()?.apply()
+            editor?.remove("caffeine $nowDay")?.apply()
             caffeine = sharedPreferences?.getString("caffeine $nowDay", "0")!!
             sc.text = "0"
             sp.text = "0"
@@ -309,7 +309,7 @@ class HomeFragment : Fragment() {
             val notificationCompatBuilder = context?.let {
                 NotificationCompat.Builder(it, channelId)
                     .setSmallIcon(R.drawable.coffeebins)
-                    .setContentTitle("Caffeine Record")
+                    .setContentTitle("카페인 레코드")
                     .setContentText(content)
             }
 

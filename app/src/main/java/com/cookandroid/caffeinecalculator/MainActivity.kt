@@ -3,6 +3,7 @@ package com.cookandroid.caffeinecalculator
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.cookandroid.caffeinecalculator.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
     // items MutableList 객체 생성
     private var items: MutableList<CoffeeData> = mutableListOf()
+    // 뒤로가기 연속 클릭 대기 시간
+    private var backTime : Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,17 @@ class MainActivity : AppCompatActivity() {
         }
             // 처음에 나타날 화면
             selectedItemId = R.id.home
+        }
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis()  - backTime >= 2000) {
+            backTime = System.currentTimeMillis()
+            Snackbar.make(binding.root, "앱을 종료하겠습니까?", Snackbar.LENGTH_LONG).apply {
+                anchorView = binding.navigationView
+            }.show()
+        } else {
+            finish()
         }
     }
 

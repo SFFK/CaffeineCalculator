@@ -24,6 +24,8 @@ class SettingFragment : Fragment() {
         val sharedPreferences = context?.getSharedPreferences("preferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
 
+        // 클릭 이벤트...
+
         binding.notify.setOnClickListener {
             startActivity(Intent(activity, NotifyActivity::class.java))
         }

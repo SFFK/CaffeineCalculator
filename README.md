@@ -1,6 +1,11 @@
 # Caffeine Record Project 
 오늘 하루동안 마신 커피나 카페인음료를 기록해 하루동안 섭취한 카페인양을 점검하는 어플리케이션
 
+#Preview
+![KakaoTalk_20240102_152403399](https://github.com/SFFK/CaffeineCalculator/assets/118871189/7dce28ff-6525-4a6f-b5c3-4d6a09a5ee6a)
+![KakaoTalk_20240102_152403399_01](https://github.com/SFFK/CaffeineCalculator/assets/118871189/7a825b52-f6a8-4386-b07b-7267e0798cbc)
+![KakaoTalk_20240102_152403399_02](https://github.com/SFFK/CaffeineCalculator/assets/118871189/f9c8182a-275d-4646-a550-8b129dd82432)
+
 # 개발 기간
 2023-09-01 ~ 2024-01-02
 

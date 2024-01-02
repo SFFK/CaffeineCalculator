@@ -1,7 +1,7 @@
 # Caffeine Record Project 
 오늘 하루동안 마신 커피나 카페인음료를 기록해 하루동안 섭취한 카페인양을 점검하는 어플리케이션
 
-#Preview
+# Preview
 <p align="center" width=100%>
 <img src="https://github.com/SFFK/CaffeineCalculator/assets/118871189/7dce28ff-6525-4a6f-b5c3-4d6a09a5ee6a" width="30%"/>
 <img src="https://github.com/SFFK/CaffeineCalculator/assets/118871189/7a825b52-f6a8-4386-b07b-7267e0798cbc" width="30%"/>

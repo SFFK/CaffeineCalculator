@@ -19,8 +19,9 @@
 * 공지사항, 버전 정보, 이용방법, 팝업알림을 구현
 
 ## skill
-* viewBinding
-* sharedPreferences
+* Kotlin
+* ViewBinding
+* SharedPreferences
 * Notification
 * ViewPager2
-* apache Poi
+* Apache Poi

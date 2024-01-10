@@ -24,4 +24,5 @@
 * SharedPreferences
 * Notification
 * ViewPager2
+* Indicator
 * Apache Poi
